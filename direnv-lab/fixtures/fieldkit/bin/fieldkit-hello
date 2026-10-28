@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+echo "fieldkit running in $FIELDKIT_ENV mode on port $FIELDKIT_PORT"
+echo "database: $DATABASE_URL"

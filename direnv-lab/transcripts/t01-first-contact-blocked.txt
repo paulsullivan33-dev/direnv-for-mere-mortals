@@ -1,0 +1,15 @@
+lab$ grep direnv ~/.bashrc
+eval "$(direnv hook bash)"
+lab$ cat ~/projects/fieldkit/.envrc
+export FIELDKIT_ENV=development
+export FIELDKIT_PORT=8080
+export DATABASE_URL=postgres://localhost/fieldkit_dev
+PATH_add bin
+lab$ cd ~/projects/fieldkit
+direnv: error ~/projects/fieldkit/.envrc is blocked. Run `direnv allow` to approve its content
+lab$ echo "FIELDKIT_ENV is [$FIELDKIT_ENV]"
+FIELDKIT_ENV is []
+lab$ echo "FIELDKIT_PORT is [$FIELDKIT_PORT]"
+FIELDKIT_PORT is []
+lab$ exit
+exit

@@ -1,0 +1,22 @@
+lab$ cd ~/projects/fieldkit
+direnv: error ~/projects/fieldkit/.envrc is blocked. Run `direnv allow` to approve its content
+lab$ direnv allow
+direnv: loading ~/projects/fieldkit/.envrc
+direnv: export +DATABASE_URL +FIELDKIT_ENV +FIELDKIT_PORT ~PATH
+lab$ echo "FIELDKIT_ENV is [$FIELDKIT_ENV]"
+FIELDKIT_ENV is [development]
+lab$ echo "FIELDKIT_PORT is [$FIELDKIT_PORT]"
+FIELDKIT_PORT is [8080]
+lab$ fieldkit-hello
+fieldkit running in development mode on port 8080
+database: postgres://localhost/fieldkit_dev
+lab$ echo $PATH
+~/projects/fieldkit/bin:~/bin:~/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+lab$ cd ~
+direnv: unloading
+lab$ echo "FIELDKIT_ENV is [$FIELDKIT_ENV]"
+FIELDKIT_ENV is []
+lab$ fieldkit-hello
+bash: fieldkit-hello: command not found
+lab$ exit
+exit

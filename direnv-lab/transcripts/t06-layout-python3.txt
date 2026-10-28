@@ -1,0 +1,37 @@
+lab$ cd ~/projects/fieldkit-py
+direnv: error ~/projects/fieldkit-py/.envrc is blocked. Run `direnv allow` to approve its content
+lab$ direnv allow
+direnv: loading ~/projects/fieldkit-py/.envrc
+direnv: ([~/bin/direnv export bash]) is taking a while to execute. Use CTRL-C to give up.
+direnv: export +VIRTUAL_ENV ~PATH
+lab$ which python
+~/projects/fieldkit-py/.direnv/python-3.12/bin/python
+lab$ echo "VIRTUAL_ENV is [$VIRTUAL_ENV]"
+VIRTUAL_ENV is [~/projects/fieldkit-py/.direnv/python-3.12]
+lab$ ls .direnv
+CACHEDIR.TAG  python-3.12
+lab$ python --version
+Python 3.12.3
+lab$ python -m pip install cowsay
+Collecting cowsay
+  Downloading cowsay-6.1-py3-none-any.whl.metadata (5.6 kB)
+Downloading cowsay-6.1-py3-none-any.whl (25 kB)
+Installing collected packages: cowsay
+Successfully installed cowsay-6.1
+lab$ python -c "import cowsay; cowsay.cow('direnv works')"
+  ____________
+| direnv works |
+  ============
+            \
+             \
+               ^__^
+               (oo)\_______
+               (__)\       )\/\
+                   ||----w |
+                   ||     ||
+lab$ cd ~
+direnv: unloading
+lab$ echo "VIRTUAL_ENV is [$VIRTUAL_ENV]"
+VIRTUAL_ENV is []
+lab$ exit
+exit

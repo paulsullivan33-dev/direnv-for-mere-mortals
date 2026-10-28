@@ -1,0 +1,79 @@
+direnv — the distilled commands
+====================================================================
+Placeholders: <folder> is a project
+folder; <name> is a variable name.
+
+FIRST CONTACT (chapters 3-4)
+--------------------------------------------------------------------
+  direnv version
+  eval "$(direnv hook bash)"       # the line for ~/.bashrc
+                                   # (end of the file)
+  direnv hook bash                 # read the hook before
+                                   # installing it
+  cd <folder>                      # first entry: blocked
+  cat .envrc                       # read it. every time it
+                                   # is new to you
+  direnv allow                     # approve this exact
+                                   # content at this path
+  cd ~                             # direnv: unloading
+
+THE GATE (chapter 5)
+--------------------------------------------------------------------
+  direnv block                     # revoke the approval
+                                   # (aliases: deny, disallow,
+                                   # revoke)
+  direnv prune                     # drop records for files
+                                   # that no longer exist
+  ls ~/.local/share/direnv/allow   # the approvals, as hash
+                                   # files
+  git diff .envrc                  # what changed, before
+                                   # allowing the new version
+
+INSIDE THE FILE (chapters 6-7)
+--------------------------------------------------------------------
+  export <name>=value              # plain bash export
+  PATH_add bin                     # project's bin/ on PATH,
+                                   # relative to the .envrc
+  source_up                        # inherit the parent
+                                   # folder's .envrc first
+  source_env <folder>              # run a named folder's
+                                   # .envrc
+  dotenv                           # load the folder's .env
+  watch_file <file>                # reload when <file>
+                                   # changes too
+  layout python3                   # a venv in .direnv/,
+                                   # activated (python's
+                                   # spelling matters: ch. 7)
+  direnv stdlib                    # the whole library,
+                                   # commented — the reference
+
+BEYOND THE PROMPT (chapter 8)
+--------------------------------------------------------------------
+  direnv exec <folder> <command>   # one command with the
+                                   # folder's environment;
+                                   # your shell untouched
+  direnv export bash               # the diff the hook
+                                   # applies, as text
+  direnv reload                    # force an unload + load
+                                   # at the next prompt
+
+DIAGNOSIS (chapters 2, 12)
+--------------------------------------------------------------------
+  direnv status                    # loaded vs found, and
+                                   # whether each is allowed
+  bash -n .envrc                   # parse-check a file
+                                   # without running it
+  grep direnv ~/.bashrc            # is the hook there?
+
+TRAPS THE LAB HIT, SO YOU DON'T (chapter 12)
+--------------------------------------------------------------------
+  * `direnv allow` typed outside the project answers
+    ".envrc file not found" — allow speaks about the
+    folder you are standing in (t90).
+  * `layout python` on a machine with only `python3`
+    fails the load: "python: command not found /
+    Could not find python's version" — the spelling
+    is `layout python3` (t06b).
+  * A one-character edit re-blocks an approved file
+    and unloads the old values until you re-allow
+    (t03). That is the gate working, not a fault.

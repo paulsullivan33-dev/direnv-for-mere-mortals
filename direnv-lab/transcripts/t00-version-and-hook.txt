@@ -1,0 +1,17 @@
+lab$ direnv version
+2.38.2
+lab$ direnv hook bash | head -12
+
+_direnv_hook() {
+  local previous_exit_status=$?;
+  local previous_sigint_trap="$(trap -p SIGINT)";
+  vars="$($'~/bin/direnv' export bash)";
+  trap -- '' SIGINT;
+  eval "$vars";
+  eval "${previous_sigint_trap:-trap - SIGINT}";
+  return $previous_exit_status;
+};
+if [[ ${BLE_VERSION-} ]] && (( _ble_version >= 400 )); then
+  blehook PRECMD!="_direnv_hook"
+lab$ exit
+exit

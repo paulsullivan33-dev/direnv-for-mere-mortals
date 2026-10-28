@@ -1,0 +1,38 @@
+lab$ cd ~/projects/fieldkit
+direnv: error ~/projects/fieldkit/.envrc is blocked. Run `direnv allow` to approve its content
+lab$ direnv allow
+direnv: loading ~/projects/fieldkit/.envrc
+direnv: export +DATABASE_URL +FIELDKIT_ENV +FIELDKIT_PORT ~PATH
+lab$ cd experiments
+direnv: error ~/projects/fieldkit/experiments/.envrc is blocked. Run `direnv allow` to approve its content
+lab$ direnv allow
+direnv: loading ~/projects/fieldkit/experiments/.envrc
+direnv: loading ~/projects/fieldkit/.envrc
+direnv: export +DATABASE_URL +FIELDKIT_ENV +FIELDKIT_PORT ~PATH
+lab$ echo "FIELDKIT_ENV is [$FIELDKIT_ENV]"
+FIELDKIT_ENV is [experiment]
+lab$ echo "FIELDKIT_PORT is [$FIELDKIT_PORT]"
+FIELDKIT_PORT is [8080]
+lab$ cat .envrc
+source_up
+export FIELDKIT_ENV=experiment
+lab$ cd ~/projects/fieldkit-legacy
+direnv: error ~/projects/fieldkit-legacy/.envrc is blocked. Run `direnv allow` to approve its content
+lab$ direnv allow
+direnv: loading ~/projects/fieldkit-legacy/.envrc
+direnv: export +FIELDKIT_ENV +FIELDKIT_PORT
+lab$ echo "FIELDKIT_ENV is [$FIELDKIT_ENV]"
+FIELDKIT_ENV is [staging]
+lab$ echo "FIELDKIT_PORT is [$FIELDKIT_PORT]"
+FIELDKIT_PORT is [8081]
+lab$ direnv stdlib | head -8
+#!/usr/bin/env bash
+#
+# These are the commands available in an .envrc context
+#
+# ShellCheck exceptions:
+#
+# SC1090: Can't follow non-constant source. Use a directive to specify location.
+# SC1091: Not following: (file missing)
+lab$ exit
+exit

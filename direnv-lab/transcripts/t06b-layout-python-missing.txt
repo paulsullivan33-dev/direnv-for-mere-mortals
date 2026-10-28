@@ -1,0 +1,8 @@
+lab$ cd ~/projects/fieldkit-py
+direnv: error ~/projects/fieldkit-py/.envrc is blocked. Run `direnv allow` to approve its content
+lab$ direnv allow
+direnv: loading ~/projects/fieldkit-py/.envrc
+environment:909: python: command not found
+direnv: Could not find python's version
+lab$ exit
+exit

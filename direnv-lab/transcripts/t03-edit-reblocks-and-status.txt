@@ -1,0 +1,39 @@
+lab$ cd ~/projects/fieldkit
+direnv: loading ~/projects/fieldkit/.envrc
+direnv: export +DATABASE_URL +FIELDKIT_ENV +FIELDKIT_PORT ~PATH
+lab$ echo "FIELDKIT_PORT is [$FIELDKIT_PORT]"
+FIELDKIT_PORT is [8080]
+lab$ sed -i s/8080/9090/ .envrc
+direnv: error ~/projects/fieldkit/.envrc is blocked. Run `direnv allow` to approve its content
+lab$ echo "FIELDKIT_PORT is [$FIELDKIT_PORT]"
+FIELDKIT_PORT is []
+lab$ direnv status
+direnv exec path ~/bin/direnv
+DIRENV_CONFIG ~/.config/direnv
+bash_path /usr/bin/bash
+disable_stdin false
+warn_timeout 5s
+whitelist.prefix []
+whitelist.exact map[]
+Loaded RC path ~/projects/fieldkit/.envrc
+Loaded watch: ".envrc" - 2026-10-28T11:24:25Z
+Loaded watch: "../../.local/share/direnv/allow/bc6f7909cb9e18c655df194d0707ddecc2a30f12044fc48d3484567e18e43374" - 1970-01-01T00:00:00Z
+Loaded watch: "../../.local/share/direnv/deny/5e6997d8d53865d1c3cb75cbe32ea72e7c691d61e182afe461dbef7320ac78cd" - 1970-01-01T00:00:00Z
+Loaded RC allowed 1
+Loaded RC allowPath ~/.local/share/direnv/allow/bc6f7909cb9e18c655df194d0707ddecc2a30f12044fc48d3484567e18e43374
+Found RC path ~/projects/fieldkit/.envrc
+Found watch: ".envrc" - 2026-10-28T11:24:25Z
+Found watch: "../../.local/share/direnv/allow/bc6f7909cb9e18c655df194d0707ddecc2a30f12044fc48d3484567e18e43374" - 1970-01-01T00:00:00Z
+Found watch: "../../.local/share/direnv/deny/5e6997d8d53865d1c3cb75cbe32ea72e7c691d61e182afe461dbef7320ac78cd" - 1970-01-01T00:00:00Z
+Found RC allowed 1
+Found RC allowPath ~/.local/share/direnv/allow/bc6f7909cb9e18c655df194d0707ddecc2a30f12044fc48d3484567e18e43374
+lab$ direnv allow
+direnv: loading ~/projects/fieldkit/.envrc
+direnv: export +DATABASE_URL +FIELDKIT_ENV +FIELDKIT_PORT ~PATH
+lab$ echo "FIELDKIT_PORT is [$FIELDKIT_PORT]"
+FIELDKIT_PORT is [9090]
+lab$ fieldkit-hello
+fieldkit running in development mode on port 9090
+database: postgres://localhost/fieldkit_dev
+lab$ exit
+exit

@@ -1,0 +1,10 @@
+lab$ echo "FIELDKIT_ENV is [$FIELDKIT_ENV]"
+FIELDKIT_ENV is []
+lab$ direnv exec ~/projects/fieldkit fieldkit-hello
+direnv: loading ~/projects/fieldkit/.envrc
+fieldkit running in development mode on port 9090
+database: postgres://localhost/fieldkit_dev
+lab$ echo "FIELDKIT_ENV is [$FIELDKIT_ENV]"
+FIELDKIT_ENV is []
+lab$ exit
+exit

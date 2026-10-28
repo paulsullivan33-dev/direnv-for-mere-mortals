@@ -1,0 +1,98 @@
+The lab — one real install, one scratch home, nobody else's code run
+====================================================================
+
+The lab is direnv as the project ships
+it, hooked into a real interactive bash,
+on the build machine (an Ubuntu 24.04
+sandbox, 2 CPUs, 7.7 GB RAM):
+
+  * direnv 2.38.2, the official release
+    binary (direnv.linux-amd64 from the
+    project's GitHub releases, SHA-256
+    recorded at download time), placed
+    in a scratch home's ~/bin.
+  * The shell was a genuine interactive
+    bash in a terminal (a pty), with a
+    scratch HOME so no real account was
+    touched: .bashrc held a PATH line,
+    the hook line, and a plain prompt.
+  * Sample projects written for the
+    guide ship in direnv-lab/fixtures/:
+    fieldkit (exports + PATH_add, with a
+    bin/fieldkit-hello script and an
+    experiments/ child using source_up),
+    fieldkit-legacy (a .env loaded via
+    dotenv), fieldkit-py (layout
+    python3), a broken project with a
+    syntax error, and a "downloaded"
+    project in ~/Downloads whose .envrc
+    is the hostile shape of chapter 5:
+    a line that would fetch and run a
+    remote script (its address is a
+    reserved .invalid name that cannot
+    resolve). It was never allowed and
+    never ran; the transcript shows the
+    block, which is the evidence.
+
+What the lab ran, in
+direnv-lab/transcripts/:
+
+  * t00 direnv version (2.38.2) and the
+    head of `direnv hook bash`.
+  * t01 first entry into fieldkit:
+    blocked error, variables provably
+    empty.
+  * t02 allow: loading and export lines,
+    variables live, fieldkit-hello run
+    from the project's PATH_add bin;
+    exit: unloading, variables gone,
+    script unfindable.
+  * t03 mid-session edit (sed, port
+    8080 -> 9090): instant re-block and
+    unload of the old values; direnv
+    status in full (Loaded vs Found,
+    allowPath); re-allow; 9090 live.
+  * t04 the Downloads project staying
+    blocked with nothing run; the allow
+    store listed (two hash files);
+    direnv block revoking fieldkit, then
+    allow restoring it.
+  * t05 source_up: experiments loads the
+    parent too (two loading lines),
+    override wins, the rest inherited;
+    dotenv loading the legacy .env;
+    direnv stdlib's first lines.
+  * t06 layout python3: venv created in
+    .direnv/python-3.12, VIRTUAL_ENV set,
+    pip installed cowsay 6.1 for real
+    from PyPI, the cow spoke; exit
+    unloaded VIRTUAL_ENV. First load
+    tripped direnv's "taking a while"
+    warning, kept in the transcript.
+  * t06b layout python on a python3-only
+    machine: "python: command not found"
+    and direnv's refusal — nothing
+    loaded.
+  * t07 direnv exec from home: the
+    project's script ran with the
+    project's environment; the shell
+    outside held nothing before or
+    after.
+  * t90 the traps: `direnv allow` at
+    home ("direnv: error .envrc file not
+    found"), and an allowed-but-broken
+    .envrc: bash's syntax error printed,
+    nothing loaded.
+
+Documented only (the lab hooked bash in
+a terminal, nothing else): the zsh,
+fish, tcsh, elvish and PowerShell hooks;
+editor and IDE integrations; the
+direnv.toml whitelist (chapter 5
+discusses it as a deliberate widening
+of the gate); direnv export's non-bash
+dialects (json, systemd, GitHub Actions);
+approving a bare .env file directly;
+the stdlib's `use` helpers and its
+non-Python layouts; direnv on macOS and
+in Windows Unix-like environments.

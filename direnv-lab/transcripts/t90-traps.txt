@@ -1,0 +1,13 @@
+lab$ direnv allow
+direnv: error .envrc file not found
+lab$ cd ~/projects/broken
+direnv: error ~/projects/broken/.envrc is blocked. Run `direnv allow` to approve its content
+lab$ cat .envrc
+export BROKEN=(
+lab$ direnv allow
+direnv: loading ~/projects/broken/.envrc
+./.envrc:1: unexpected EOF while looking for matching `)'
+lab$ echo "BROKEN is [$BROKEN]"
+BROKEN is []
+lab$ exit
+exit

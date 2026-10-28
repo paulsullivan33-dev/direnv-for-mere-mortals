@@ -1,0 +1,26 @@
+site_name: Direnv for Mere Mortals
+site_description: The shell helper that loads a project's environment when you enter its folder and unloads it when you leave. Writing .envrc files, trusting them one at a time with allow, layouts that build a Python home for a project, and the security rule that makes the whole arrangement safe.
+site_url: https://paulsullivan33-dev.github.io/direnv-for-mere-mortals/
+copyright: 'Part of <a href="https://paulsullivan33-dev.github.io/mere-mortals/">For Mere Mortals</a> · Text <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, code MIT'
+
+# Guides live at the repo root (nice for GitHub browsing).
+# The deploy workflow copies them into docs/ before building.
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - What Direnv Is: what-direnv-is.md
+  - The Moving Parts: the-moving-parts.md
+  - Installing Direnv: installing-direnv.md
+  - Your First .envrc: your-first-envrc.md
+  - The Allow List: the-allow-list.md
+  - Writing .envrc Files: writing-envrc-files.md
+  - Layouts: layouts.md
+  - Beyond the Prompt: beyond-the-prompt.md
+  - Recipes: recipes.md
+  - The Neighbours: the-neighbours.md
+  - Limits: limits.md
+  - Troubleshooting: troubleshooting.md
+  - Glossary: glossary.md
+  - Writing Criteria: criteria.md
